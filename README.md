@@ -24,7 +24,6 @@ FROM [KMS]
 GROUP BY Product_Category
 ORDER BY [Product Count] DESC
 ```
-
 **Insight:** The category with the most orders (and highest implied sales) is likely driving the majority of KMS’s revenue.
 
 **2. What are the Top 3 and Bottom 3 regions in terms of sales?**
@@ -52,7 +51,6 @@ FROM [KMS]
 WHERE Region = 'Ontario'
 GROUP BY Region
 ```
-
 **Insight:** Focused product-region analysis for localized strategies.
 
 **4. How can KMS increase revenue from the bottom 10 customers?**
@@ -62,7 +60,6 @@ FROM [KMS]
 GROUP BY Customer_Name
 ORDER BY [Total Sales] ASC
 ```
-
 **Insight:** Target these customers with personalized offers, follow-ups, or loyalty discounts.
 
 **5. Which shipping method cost the most?**
@@ -72,7 +69,6 @@ FROM [KMS]
 GROUP BY Ship_Mode
 ORDER BY [Total Shipping Cost] DESC
 ```
-
 **Insight:** Helps in optimizing logistics cost.
 
 ### Case Scenario II
@@ -83,7 +79,6 @@ FROM [KMS]
 GROUP BY Customer_Name, Product_Name
 ORDER BY [Total Sales] DESC
 ```
-
 **Insight:** Highlights high-value customers and preferred product lines.
 
 **7. Which small business customer had the highest sales?**
@@ -94,7 +89,6 @@ WHERE Customer_Segment = 'Small Business'
 GROUP BY Customer_Name, Customer_Segment
 ORDER BY [Total Sales] DESC
 ```
-
 **Insight:** Supports segmentation-based marketing or account management.
 
 **8. Which corporate customer placed the most orders (2009–2012)?**
@@ -105,7 +99,6 @@ WHERE Customer_Segment = 'Corporate' AND Order_Date BETWEEN '2009' AND '2012'
 GROUP BY Customer_Name, Customer_Segment
 ORDER BY [Total order] DESC
 ```
-
 **Insight:** Opportunity to deepen relationships with consistent corporate buyers.
 
 **9. Which consumer customer was the most profitable?**
@@ -116,7 +109,6 @@ WHERE Customer_Segment = 'Consumer'
 GROUP BY Customer_Name, Customer_Segment
 ORDER BY [Total profit] DESC
 ```
-
 **Insight:** High-margin customer segment to prioritize.
 
 **10. Which customer returned items, and what segment do they belong to?**
@@ -126,7 +118,6 @@ FROM [KMS]
 JOIN [Order_Status DSA]
 ON [KMS].Order_ID = [Order_Status DSA].[Order_ID]
 ```
-
 **Insight:** Returned orders may indicate dissatisfaction or delivery issues—requires customer service follow-up.
 
 **11. Is shipping cost aligned with order priority?**
@@ -139,7 +130,6 @@ FROM [KMS]
 GROUP BY Order_Priority, Ship_Mode
 ORDER BY Order_Priority, Ship_Mode DESC
 ```
-
 **Insight:** Evaluate if high-priority orders use Express Air and low-priority ones use Delivery Truck. Misalignment indicates waste.
 
 
