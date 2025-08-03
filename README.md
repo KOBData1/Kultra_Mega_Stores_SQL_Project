@@ -18,76 +18,69 @@ Kultra Mega Stores (KMS), headquartered in Lagos, Nigeria, is a leading provider
 ## Business Questions & SQL Analysis
 ### Case Scenario I
 **1. Which product category had the highest sales?**
-'''''SQL
-SELECT TOP 1 [Product_Category], COUNT([Product_Category]) AS [Product Count]
+'''''SELECT TOP 1 [Product_Category], COUNT([Product_Category]) AS [Product Count]
 FROM [KMS]
 GROUP BY Product_Category
 ORDER BY [Product Count] DESC
 
-Insight: The category with the most orders (and highest implied sales) is likely driving the majority of KMS’s revenue.
+**Insight:** The category with the most orders (and highest implied sales) is likely driving the majority of KMS’s revenue.
 
 **2. What are the Top 3 and Bottom 3 regions in terms of sales?**
 -- Top 3
-'''''SQL
-SELECT TOP 3 [Region], SUM([Sales]) AS [Total Sales]
+'''''SELECT TOP 3 [Region], SUM([Sales]) AS [Total Sales]
 FROM [KMS]
 GROUP BY Region
 ORDER BY [Total Sales] DESC
 
 -- Bottom 3 
-'''''SQL
-SELECT TOP 3 [Region], SUM([Sales]) AS [Total Sales]
+'''''SELECT TOP 3 [Region], SUM([Sales]) AS [Total Sales]
 FROM [KMS]
 GROUP BY Region
 ORDER BY [Total Sales] ASC
 
-Insight: Identifies strong and underperforming geographic markets.
+**Insight:** Identifies strong and underperforming geographic markets.
 
 **3. What were the total sales of appliances in Ontario?**
-'''''SQL
-SELECT Region, SUM(Sales) AS [Total Sales]
+'''''SELECT Region, SUM(Sales) AS [Total Sales]
 FROM [KMS]
 WHERE Region = 'Ontario'
 GROUP BY Region
 
-Insight: Focused product-region analysis for localized strategies.
+**Insight:** Focused product-region analysis for localized strategies.
 
 **4. How can KMS increase revenue from the bottom 10 customers?**
-'''''SQL
-SELECT TOP 10 [Customer_Name], SUM([Sales]) AS [Total Sales]
+'''''SELECT TOP 10 [Customer_Name], SUM([Sales]) AS [Total Sales]
 FROM [KMS]
 GROUP BY Customer_Name
 ORDER BY [Total Sales] ASC
 
-Insight: Target these customers with personalized offers, follow-ups, or loyalty discounts.
+**Insight:** Target these customers with personalized offers, follow-ups, or loyalty discounts.
 
 **5. Which shipping method cost the most?**
-'''''SQL
-SELECT TOP 1 [Ship_Mode], SUM([Shipping_Cost]) AS [Total Shipping Cost]
+'''''SELECT TOP 1 [Ship_Mode], SUM([Shipping_Cost]) AS [Total Shipping Cost]
 FROM [KMS]
 GROUP BY Ship_Mode
 ORDER BY [Total Shipping Cost] DESC
 
-Insight: Helps in optimizing logistics cost.
+**Insight:** Helps in optimizing logistics cost.
 
 ### Case Scenario II
 **6. Who are the most valuable customers and what do they typically purchase?**
-'''''SQL
-SELECT [Customer_Name], Product_Name, SUM(Sales) AS [Total Sales]
+'''''SELECT [Customer_Name], Product_Name, SUM(Sales) AS [Total Sales]
 FROM [KMS]
 GROUP BY Customer_Name, Product_Name
 ORDER BY [Total Sales] DESC
-Insight: Highlights high-value customers and preferred product lines.
+
+**Insight:** Highlights high-value customers and preferred product lines.
 
 **7. Which small business customer had the highest sales?**
-'''''SQL
-SELECT TOP 1 Customer_Name, Customer_Segment, SUM([Sales]) AS [Total Sales]
+'''''SELECT TOP 1 Customer_Name, Customer_Segment, SUM([Sales]) AS [Total Sales]
 FROM [KMS]
 WHERE Customer_Segment = 'Small Business'
 GROUP BY Customer_Name, Customer_Segment
 ORDER BY [Total Sales] DESC
 
-Insight: Supports segmentation-based marketing or account management.
+**Insight:** Supports segmentation-based marketing or account management.
 
 **8. Which corporate customer placed the most orders (2009–2012)?**
 '''''SQL
@@ -96,30 +89,27 @@ FROM [KMS]
 WHERE Customer_Segment = 'Corporate' AND Order_Date BETWEEN '2009' AND '2012'
 GROUP BY Customer_Name, Customer_Segment
 ORDER BY [Total order] DESC
-Insight: Opportunity to deepen relationships with consistent corporate buyers.
+**Insight:** Opportunity to deepen relationships with consistent corporate buyers.
 
 **9. Which consumer customer was the most profitable?**
-'''''SQL
-SELECT TOP 1 Customer_Name, Customer_Segment, SUM([Profit]) AS [Total profit]
+'''''SELECT TOP 1 Customer_Name, Customer_Segment, SUM([Profit]) AS [Total profit]
 FROM [KMS]
 WHERE Customer_Segment = 'Consumer'
 GROUP BY Customer_Name, Customer_Segment
 ORDER BY [Total profit] DESC
 
-Insight: High-margin customer segment to prioritize.
+**Insight:** High-margin customer segment to prioritize.
 
 **10. Which customer returned items, and what segment do they belong to?**
-'''''SQL
-SELECT Customer_Name, Customer_Segment, [Status]
+'''''SELECT Customer_Name, Customer_Segment, [Status]
 FROM [KMS]
 JOIN [Order_Status DSA]
 ON [KMS].Order_ID = [Order_Status DSA].[Order_ID]
 
-Insight: Returned orders may indicate dissatisfaction or delivery issues—requires customer service follow-up.
+**Insight:** Returned orders may indicate dissatisfaction or delivery issues—requires customer service follow-up.
 
 **11. Is shipping cost aligned with order priority?**
-'''''SQL
-SELECT [Order_Priority], [Ship_Mode],
+'''''SELECT [Order_Priority], [Ship_Mode],
  COUNT([Order_ID]) AS [Order Count],
  SUM(Sales - Profit) AS [Estimated Shipping Cost],
  AVG(DATEDIFF(DAY, [Order_Date], [Ship_Date])) AS [Avg ship date]
@@ -127,7 +117,7 @@ FROM [KMS]
 GROUP BY Order_Priority, Ship_Mode
 ORDER BY Order_Priority, Ship_Mode DESC
 
-Insight: Evaluate if high-priority orders use Express Air and low-priority ones use Delivery Truck. Misalignment indicates waste.
+**Insight:** Evaluate if high-priority orders use Express Air and low-priority ones use Delivery Truck. Misalignment indicates waste.
 
 
 ## Key Insights & Recommendations
