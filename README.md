@@ -22,25 +22,27 @@ Kultra Mega Stores (KMS), headquartered in Lagos, Nigeria, is a leading provider
 SELECT TOP 1 [Product_Category], COUNT([Product_Category]) AS [Product Count]
 FROM [KMS]
 GROUP BY Product_Category
-ORDER BY [Product Count] DESC;
+ORDER BY [Product Count] DESC
+```
 
 **Insight:** The category with the most orders (and highest implied sales) is likely driving the majority of KMS’s revenue.
 
 **2. What are the Top 3 and Bottom 3 regions in terms of sales?**
--- Top 3
+- Top 3
 ```sql
 SELECT TOP 3 [Region], SUM([Sales]) AS [Total Sales]
 FROM [KMS]
 GROUP BY Region
-ORDER BY [Total Sales] DESC;
+ORDER BY [Total Sales] DESC
+```
 
--- Bottom 3 
+- Bottom 3 
 ```sql
 SELECT TOP 3 [Region], SUM([Sales]) AS [Total Sales]
 FROM [KMS]
 GROUP BY Region
-ORDER BY [Total Sales] ASC;
-
+ORDER BY [Total Sales] ASC
+```
 **Insight:** Identifies strong and underperforming geographic markets.
 
 **3. What were the total sales of appliances in Ontario?**
@@ -48,7 +50,8 @@ ORDER BY [Total Sales] ASC;
 SELECT Region, SUM(Sales) AS [Total Sales]
 FROM [KMS]
 WHERE Region = 'Ontario'
-GROUP BY Region;
+GROUP BY Region
+```
 
 **Insight:** Focused product-region analysis for localized strategies.
 
@@ -57,7 +60,8 @@ GROUP BY Region;
 SELECT TOP 10 [Customer_Name], SUM([Sales]) AS [Total Sales]
 FROM [KMS]
 GROUP BY Customer_Name
-ORDER BY [Total Sales] ASC;
+ORDER BY [Total Sales] ASC
+```
 
 **Insight:** Target these customers with personalized offers, follow-ups, or loyalty discounts.
 
@@ -66,7 +70,8 @@ ORDER BY [Total Sales] ASC;
 SELECT TOP 1 [Ship_Mode], SUM([Shipping_Cost]) AS [Total Shipping Cost]
 FROM [KMS]
 GROUP BY Ship_Mode
-ORDER BY [Total Shipping Cost] DESC;
+ORDER BY [Total Shipping Cost] DESC
+```
 
 **Insight:** Helps in optimizing logistics cost.
 
@@ -76,7 +81,8 @@ ORDER BY [Total Shipping Cost] DESC;
 SELECT [Customer_Name], Product_Name, SUM(Sales) AS [Total Sales]
 FROM [KMS]
 GROUP BY Customer_Name, Product_Name
-ORDER BY [Total Sales] DESC;
+ORDER BY [Total Sales] DESC
+```
 
 **Insight:** Highlights high-value customers and preferred product lines.
 
@@ -86,7 +92,8 @@ SELECT TOP 1 Customer_Name, Customer_Segment, SUM([Sales]) AS [Total Sales]
 FROM [KMS]
 WHERE Customer_Segment = 'Small Business'
 GROUP BY Customer_Name, Customer_Segment
-ORDER BY [Total Sales] DESC;
+ORDER BY [Total Sales] DESC
+```
 
 **Insight:** Supports segmentation-based marketing or account management.
 
@@ -96,7 +103,8 @@ SELECT TOP 1 Customer_Name, Customer_Segment, COUNT([Order_ID]) AS [Total order]
 FROM [KMS]
 WHERE Customer_Segment = 'Corporate' AND Order_Date BETWEEN '2009' AND '2012'
 GROUP BY Customer_Name, Customer_Segment
-ORDER BY [Total order] DESC;
+ORDER BY [Total order] DESC
+```
 
 **Insight:** Opportunity to deepen relationships with consistent corporate buyers.
 
@@ -106,7 +114,8 @@ SELECT TOP 1 Customer_Name, Customer_Segment, SUM([Profit]) AS [Total profit]
 FROM [KMS]
 WHERE Customer_Segment = 'Consumer'
 GROUP BY Customer_Name, Customer_Segment
-ORDER BY [Total profit] DESC;
+ORDER BY [Total profit] DESC
+```
 
 **Insight:** High-margin customer segment to prioritize.
 
@@ -115,7 +124,8 @@ ORDER BY [Total profit] DESC;
 SELECT Customer_Name, Customer_Segment, [Status]
 FROM [KMS]
 JOIN [Order_Status DSA]
-ON [KMS].Order_ID = [Order_Status DSA].[Order_ID];
+ON [KMS].Order_ID = [Order_Status DSA].[Order_ID]
+```
 
 **Insight:** Returned orders may indicate dissatisfaction or delivery issues—requires customer service follow-up.
 
@@ -127,7 +137,8 @@ SUM(Sales - Profit) AS [Estimated Shipping Cost],
 AVG(DATEDIFF(DAY, [Order_Date], [Ship_Date])) AS [Avg ship date]
 FROM [KMS]
 GROUP BY Order_Priority, Ship_Mode
-ORDER BY Order_Priority, Ship_Mode DESC;
+ORDER BY Order_Priority, Ship_Mode DESC
+```
 
 **Insight:** Evaluate if high-priority orders use Express Air and low-priority ones use Delivery Truck. Misalignment indicates waste.
 
