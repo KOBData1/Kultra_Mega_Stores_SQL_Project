@@ -18,7 +18,8 @@ Kultra Mega Stores (KMS), headquartered in Lagos, Nigeria, is a leading provider
 ## Business Questions & SQL Analysis
 ### Case Scenario I
 **1. Which product category had the highest sales?**
-'''''SELECT TOP 1 [Product_Category], COUNT([Product_Category]) AS [Product Count]
+```sql
+SELECT TOP 1 [Product_Category], COUNT([Product_Category]) AS [Product Count]
 FROM [KMS]
 GROUP BY Product_Category
 ORDER BY [Product Count] DESC
@@ -27,13 +28,15 @@ ORDER BY [Product Count] DESC
 
 **2. What are the Top 3 and Bottom 3 regions in terms of sales?**
 -- Top 3
-'''''SELECT TOP 3 [Region], SUM([Sales]) AS [Total Sales]
+```sql
+SELECT TOP 3 [Region], SUM([Sales]) AS [Total Sales]
 FROM [KMS]
 GROUP BY Region
 ORDER BY [Total Sales] DESC
 
 -- Bottom 3 
-'''''SELECT TOP 3 [Region], SUM([Sales]) AS [Total Sales]
+```sql
+SELECT TOP 3 [Region], SUM([Sales]) AS [Total Sales]
 FROM [KMS]
 GROUP BY Region
 ORDER BY [Total Sales] ASC
@@ -41,7 +44,8 @@ ORDER BY [Total Sales] ASC
 **Insight:** Identifies strong and underperforming geographic markets.
 
 **3. What were the total sales of appliances in Ontario?**
-'''''SELECT Region, SUM(Sales) AS [Total Sales]
+```sql
+SELECT Region, SUM(Sales) AS [Total Sales]
 FROM [KMS]
 WHERE Region = 'Ontario'
 GROUP BY Region
@@ -49,7 +53,8 @@ GROUP BY Region
 **Insight:** Focused product-region analysis for localized strategies.
 
 **4. How can KMS increase revenue from the bottom 10 customers?**
-'''''SELECT TOP 10 [Customer_Name], SUM([Sales]) AS [Total Sales]
+```sql
+SELECT TOP 10 [Customer_Name], SUM([Sales]) AS [Total Sales]
 FROM [KMS]
 GROUP BY Customer_Name
 ORDER BY [Total Sales] ASC
@@ -57,7 +62,8 @@ ORDER BY [Total Sales] ASC
 **Insight:** Target these customers with personalized offers, follow-ups, or loyalty discounts.
 
 **5. Which shipping method cost the most?**
-'''''SELECT TOP 1 [Ship_Mode], SUM([Shipping_Cost]) AS [Total Shipping Cost]
+```sql
+SELECT TOP 1 [Ship_Mode], SUM([Shipping_Cost]) AS [Total Shipping Cost]
 FROM [KMS]
 GROUP BY Ship_Mode
 ORDER BY [Total Shipping Cost] DESC
@@ -66,7 +72,8 @@ ORDER BY [Total Shipping Cost] DESC
 
 ### Case Scenario II
 **6. Who are the most valuable customers and what do they typically purchase?**
-'''''SELECT [Customer_Name], Product_Name, SUM(Sales) AS [Total Sales]
+```sql
+SELECT [Customer_Name], Product_Name, SUM(Sales) AS [Total Sales]
 FROM [KMS]
 GROUP BY Customer_Name, Product_Name
 ORDER BY [Total Sales] DESC
@@ -74,7 +81,8 @@ ORDER BY [Total Sales] DESC
 **Insight:** Highlights high-value customers and preferred product lines.
 
 **7. Which small business customer had the highest sales?**
-'''''SELECT TOP 1 Customer_Name, Customer_Segment, SUM([Sales]) AS [Total Sales]
+```sql
+SELECT TOP 1 Customer_Name, Customer_Segment, SUM([Sales]) AS [Total Sales]
 FROM [KMS]
 WHERE Customer_Segment = 'Small Business'
 GROUP BY Customer_Name, Customer_Segment
@@ -83,7 +91,7 @@ ORDER BY [Total Sales] DESC
 **Insight:** Supports segmentation-based marketing or account management.
 
 **8. Which corporate customer placed the most orders (2009–2012)?**
-'''''SQL
+```sql
 SELECT TOP 1 Customer_Name, Customer_Segment, COUNT([Order_ID]) AS [Total order]
 FROM [KMS]
 WHERE Customer_Segment = 'Corporate' AND Order_Date BETWEEN '2009' AND '2012'
@@ -92,7 +100,8 @@ ORDER BY [Total order] DESC
 **Insight:** Opportunity to deepen relationships with consistent corporate buyers.
 
 **9. Which consumer customer was the most profitable?**
-'''''SELECT TOP 1 Customer_Name, Customer_Segment, SUM([Profit]) AS [Total profit]
+```sql
+SELECT TOP 1 Customer_Name, Customer_Segment, SUM([Profit]) AS [Total profit]
 FROM [KMS]
 WHERE Customer_Segment = 'Consumer'
 GROUP BY Customer_Name, Customer_Segment
@@ -101,7 +110,8 @@ ORDER BY [Total profit] DESC
 **Insight:** High-margin customer segment to prioritize.
 
 **10. Which customer returned items, and what segment do they belong to?**
-'''''SELECT Customer_Name, Customer_Segment, [Status]
+```sql
+SELECT Customer_Name, Customer_Segment, [Status]
 FROM [KMS]
 JOIN [Order_Status DSA]
 ON [KMS].Order_ID = [Order_Status DSA].[Order_ID]
@@ -109,10 +119,11 @@ ON [KMS].Order_ID = [Order_Status DSA].[Order_ID]
 **Insight:** Returned orders may indicate dissatisfaction or delivery issues—requires customer service follow-up.
 
 **11. Is shipping cost aligned with order priority?**
-'''''SELECT [Order_Priority], [Ship_Mode],
- COUNT([Order_ID]) AS [Order Count],
- SUM(Sales - Profit) AS [Estimated Shipping Cost],
- AVG(DATEDIFF(DAY, [Order_Date], [Ship_Date])) AS [Avg ship date]
+```sql
+SELECT [Order_Priority], [Ship_Mode],
+COUNT([Order_ID]) AS [Order Count],
+SUM(Sales - Profit) AS [Estimated Shipping Cost],
+AVG(DATEDIFF(DAY, [Order_Date], [Ship_Date])) AS [Avg ship date]
 FROM [KMS]
 GROUP BY Order_Priority, Ship_Mode
 ORDER BY Order_Priority, Ship_Mode DESC
