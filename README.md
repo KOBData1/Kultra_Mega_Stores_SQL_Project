@@ -33,7 +33,10 @@ GROUP BY Product_Category
 ORDER BY [Product Count] DESC
 ```
 **Answer:** Office supplies – 4,589
+
 **Insight:** The category with the most orders (and highest implied sales) is likely driving the majority of KMS’s revenue.
+
+#
 
 **2. What are the Top 3 and Bottom 3 regions in terms of sales?**
 - Top 3
@@ -53,8 +56,12 @@ ORDER BY [Total Sales] ASC
 ```
 **Answer:**
 **Top 3:** West – 3,547,960; Ontario – 3,019,152; Prairie – 2,773,568
+
 **Bottom 3:** Nunavut – 1,062,091; Northwest Territories – 766,755; Yukon – 971,446
+
 **Insight:** Identifies strong and underperforming geographic markets.
+
+#
 
 **3. What were the total sales of appliances in Ontario?**
 ```sql
@@ -64,7 +71,10 @@ WHERE [Product_Category] ='appliances'
 AND [Region] = 'Ontario'
 ```
 **Answer:** There was no sale of appliances in Ontario.
+
 **Insight:** Focused product-region analysis for localized strategies.
+
+#
 
 **4. How can KMS increase revenue from the bottom 10 customers?**
 ```sql
@@ -78,10 +88,7 @@ ORDER BY [Total Sales] ASC
 <img width="900" height="300" alt="image" src="https://github.com/user-attachments/assets/9e195f6d-94c6-49c5-a41d-652107706edd" />
 
 
-
-
-
-
+#
 
 **5. KMS incurred the most shipping cost using which shipping method?**
 ```sql
@@ -91,7 +98,10 @@ GROUP BY Ship_Mode
 ORDER BY [Total Shipping Cost] DESC
 ```
 **Answer:** They incurred the most delivery cost using the Delivery Truck shipping method.
+
 **Insight:** Helps in optimizing logistics cost.
+
+#
 
 ### Case Scenario II
 **6. Who are the most valuable customers and what do they typically purchase?**
@@ -102,7 +112,10 @@ GROUP BY Customer_Name, Product_Name
 ORDER BY [Total Sales] DESC
 ```
 **Answer:** Emily Phan, Jasper Cacioppo, Craig Carreira — all purchased Polycom Viewstation.
+
 **Insight:** Highlights high-value customers and preferred product lines.
+
+#
 
 **7. Which small business customer had the highest sales?**
 ```sql
@@ -113,7 +126,10 @@ GROUP BY Customer_Name, Customer_Segment
 ORDER BY [Total Sales] DESC
 ```
 **Answer:** Dennis Kane
+
 **Insight:** Supports segmentation-based marketing or account management.
+
+#
 
 **8. Which corporate customer placed the most orders (2009–2012)?**
 ```sql
@@ -124,15 +140,12 @@ GROUP BY Customer_Name, Customer_Segment
 ORDER BY [Total order] DESC
 ```
 **Answer:** John Lee
+
 **Insight:** Opportunity to deepen relationships with consistent corporate buyers.
 
 <img width="900" height="300" alt="image" src="https://github.com/user-attachments/assets/5c06b546-eba5-4273-b9a4-6463af23e7d0" />
 
-
-
-
-
-
+#
 
 **9. Which consumer customer was the most profitable?**
 ```sql
@@ -143,7 +156,10 @@ GROUP BY Customer_Name, Customer_Segment
 ORDER BY [Total profit] DESC
 ```
 **Answer:** Emily Phan
+
 **Insight:** High-margin customer segment to prioritize.
+
+#
 
 **10. Which customer returned items, and what segment do they belong to?**
 ```sql
@@ -157,10 +173,12 @@ JOIN [Order_Status DSA] AS o
 WHERE o.Status = 'Returned';
 ```
 **Answer:** 417 customers returned orders across the different segments.
+
 **Insight:** Returned orders may indicate dissatisfaction or delivery issues—requires customer service follow-up.
 
 <img width="800" height="300" alt="image" src="https://github.com/user-attachments/assets/67583b8a-4574-4b0e-8255-eb41134aff0b" />
 
+#
 
 **11. Is shipping cost aligned with order priority?**
 ```sql
@@ -172,17 +190,17 @@ FROM [KMS]
 GROUP BY Order_Priority, Ship_Mode
 ORDER BY Order_Priority, Ship_Mode DESC
 ```
-**Answer:** No. Some low/medium-priority orders were sent via Regular/Express Air, and some high/critical-priority orders were sent via Delivery Truck, which is slow. Orders were not shipped based on priority — Express Air should be used for urgent orders.
+**Answer: No.** Some low/medium-priority orders were sent via Regular/Express Air, and some high/critical-priority orders were sent via Delivery Truck, which is slow. Orders were not shipped based on priority — Express Air should be used for urgent orders.
+
 **Insight:** Evaluate if high-priority orders use Express Air and low-priority ones use Delivery Truck. Misalignment indicates waste.
+
 <img width="800" height="300" alt="image" src="https://github.com/user-attachments/assets/c8258131-f9fc-4649-be20-5f35a77da28e" />
 
+#
 
 <img width="10005" height="300" alt="image" src="https://github.com/user-attachments/assets/3d49eb84-8ee7-4f0a-a5cf-e6ba9206fc4a" />
 
-
-
-
-
+#
 
 
 ## ✅ Recommendations
@@ -215,10 +233,13 @@ ORDER BY Order_Priority, Ship_Mode DESC
   - (Once data is complete) Review returns by segment or product.
   - Improve descriptions, packaging, and customer communication to reduce return rates.
 
+#
+
 ## Conclusion
 This analysis helped uncover valuable insights across product categories, customer behavior, shipping efficiency, and regional performance. Using SQL, actionable intelligence can now drive data-informed decisions for the Abuja division of Kultra Mega Stores.
 
-[View Full SQL Queries](https://drive.google.com/file/d/1rH7cW2w474EaXoM3EgyGnpO1RsqHwC5P/view?usp=drivesdk) 
+#
 
+[View Full SQL Queries](https://drive.google.com/file/d/1uphOfaxTwXxLGosHX8YsEq4ivqv7hFzg/view?usp=drivesdk)
 
 
